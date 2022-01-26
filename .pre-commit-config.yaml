@@ -1,0 +1,22 @@
+repos:
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.17 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  hooks:
+#    - id: tflint
+#      args:
+#        - "--module"
+#        - "--deep"
+#        - "--config=.tflint.hcl"
+    - id: terraform-validate
+    - id: terraform-fmt
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.62.3 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terrascan
+    - id: terraform_docs
+#    - id: infracost_breakdown
+    - id: terraform_tfsec
+      args:
+        - >
+          --args= 
+          -e aws-vpc-no-public-egress-sg,aws-vpc-no-public-ingress-sg,aws-vpc-add-description-to-security-group,aws-iam-no-policy-wildcards,aws-vpc-add-description-to-security-group,aws-elbv2-http-not-used,aws-elbv2-alb-not-public 
